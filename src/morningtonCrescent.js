@@ -31,8 +31,8 @@ function eventHandler(event, context) {
         context.succeed(buildResponse(event.session.attributes, speechletResponse));
       });
     } else if (event.request.type === "IntentRequest") {
-      onIntent(event.request, event.session, function callback(sessionAttributes, speechletResponse) {
-        context.succeed(buildResponse(sessionAttributes, speechletResponse));
+      onIntent(event.request, function callback(speechletResponse) {
+        context.succeed(buildResponse(event.session.attributes, speechletResponse));
       });
     }
   } catch (e) {
@@ -44,31 +44,29 @@ function onLaunch(callback) {
   callback(buildSpeechletResponse("Mornigton Crescent", "Good afternoon and welcome to Mornington Crescent! First player, name your station!", "", false));
 }
 
-function onIntent(intentRequest, session, callback) {
-  var intent = intentRequest.intent,
-      intentName = intentRequest.intent.name;
+function onIntent(intentRequest, callback) {
   if (intentRequest.intent.slots.station.value == 'mornington crescent') {
-    handleWinRequest(intent, session, callback);
-  } else if (intentName == 'PlayIntent') {
-    handlePlayRequest(intent, session, callback);
+    handleWinRequest(callback);
+  } else if (intentRequest.intent.name == 'PlayIntent') {
+    handlePlayRequest(callback);
   }
   else {
     throw "Invalid intent";
   }
 }
 
-function handlePlayRequest(intent, session, callback) {
+function handlePlayRequest(callback) {
   var commentArr = playMessages;
   var commentIndex = Math.floor(Math.random() * commentArr.length);
   var randomComment = commentArr[commentIndex];
-  callback(session.attributes, buildSpeechletResponseWithoutCard(randomComment, "", "false"));
+  callback(buildSpeechletResponseWithoutCard(randomComment, "", "false"));
 }
 
-function handleWinRequest(intent, session, callback) {
+function handleWinRequest(callback) {
   var winArr = winMessages;
   var winIndex = Math.floor(Math.random() * winArr.length);
   var winMessage = winArr[winIndex];
-  callback(session.attributes, buildSpeechletResponseWithoutCard('You won! ' + winMessage, "", "true"));
+  callback(buildSpeechletResponseWithoutCard('You won! ' + winMessage, "", "true"));
 }
 
 function buildSpeechletResponse(title, output, repromptText, shouldEndSession) {

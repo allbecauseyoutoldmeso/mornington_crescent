@@ -18,3 +18,11 @@ describe('#onLaunch', function() {
     expect(callback).toHaveBeenCalledWith(buildSpeechletResponse("Mornigton Crescent", "Good afternoon and welcome to Mornington Crescent! First player, name your station!", "", false));
   });
 });
+
+describe('#onIntent', function() {
+  it('recognises a non winning station', function() {
+    spyOn(self, 'handlePlayRequest');
+    onIntent(playEvent().request, 'callback')
+    expect(self.handlePlayRequest).toHaveBeenCalled();
+  })
+})
