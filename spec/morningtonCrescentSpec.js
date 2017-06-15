@@ -24,5 +24,10 @@ describe('#onIntent', function() {
     spyOn(self, 'handlePlayRequest');
     onIntent(playEvent().request, 'callback')
     expect(self.handlePlayRequest).toHaveBeenCalled();
+  });
+  it('recognises mornington crescent', function() {
+    spyOn(self, 'handleWinRequest');
+    onIntent(morningtonCrescentEvent().request, 'callback')
+    expect(self.handleWinRequest).toHaveBeenCalled();
   })
 })
