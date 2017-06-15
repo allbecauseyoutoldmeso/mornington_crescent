@@ -31,3 +31,9 @@ describe('#onIntent', function() {
     expect(self.handleWinRequest).toHaveBeenCalled();
   })
 })
+
+describe('#buildResponse', function() {
+  it('builds a response object', function() {
+    expect(buildResponse('attributes', 'response')).toEqual({version: "1.0", sessionAttributes: 'attributes', response: 'response'})
+  })
+})
