@@ -12,7 +12,7 @@ var playMessages = [
     "Whoa? Its not Lent yet, is it?",
     "Personally, in that scenario, I'd have gone with Knightsbridge.",
     "Canny move.  Flanching rights claimed.",
-    "Are you bloody insane?",
+    "Are you blooming insane?",
     "I've not seen that since Archie Gimmel scored against Holland in 1978!",
     "Mind the gap!"
 ];
