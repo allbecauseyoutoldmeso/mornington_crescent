@@ -32,6 +32,26 @@ describe('#onIntent', function() {
   })
 })
 
+describe('buildSpeechletResponseWithoutCard', function() {
+  it('builds a speech response object', function() {
+    expect(buildSpeechletResponseWithoutCard('You won!', '', true)).toEqual(
+      {
+        outputSpeech: {
+          type: "PlainText",
+          text: 'You won!'
+        },
+        reprompt: {
+          outputSpeech: {
+            type: "PlainText",
+            text: ''
+          }
+        },
+        shouldEndSession: true
+      }
+    )
+  })
+})
+
 describe('#buildResponse', function() {
   it('builds a response object', function() {
     expect(buildResponse('attributes', 'response')).toEqual({version: "1.0", sessionAttributes: 'attributes', response: 'response'})
