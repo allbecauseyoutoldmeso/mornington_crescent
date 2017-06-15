@@ -59,7 +59,7 @@ function handlePlayRequest(callback) {
   var commentArr = playMessages;
   var commentIndex = Math.floor(Math.random() * commentArr.length);
   var randomComment = commentArr[commentIndex];
-  callback(buildSpeechletResponseWithoutCard(randomComment, "", "false"));
+  callback(buildSpeechletResponseWithoutCard(randomComment, "", false));
 }
 
 function handleWinRequest(callback) {

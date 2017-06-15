@@ -32,6 +32,15 @@ describe('#onIntent', function() {
   })
 })
 
+describe('#handlePlayRequest', function() {
+  it('returns a random comment', function() {
+    spyOn(Math, 'random').and.returnValue(0.5);
+    var callback = jasmine.createSpy('callback');
+    handlePlayRequest(callback)
+    expect(callback).toHaveBeenCalledWith(buildSpeechletResponseWithoutCard("Whoa? Its not Lent yet, is it?", "", false))
+  })
+})
+
 describe('buildSpeechletResponse', function() {
   it('builds a speech response object with card', function() {
     expect(buildSpeechletResponse('mornington crescent', 'You won!', '', true)).toEqual(
