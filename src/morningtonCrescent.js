@@ -1,5 +1,7 @@
 'use strict';
 
+// exports.handler = function(event, context) { eventHandler(event, context) };
+
 var playMessages = [
     "Traditional move, like the King’s pawn really, and gives you limited access to Northern parallels",
     "I suppose it is technically laying an off-side trap there. Force the next player into Knip if they're not very careful.",
@@ -22,8 +24,6 @@ var winMessages = [
   "Excellent work gentlemen."
 ];
 
-// exports.handler = function(event, context) { eventHandler(event, context) };
-
 function eventHandler(event, context) {
   try {
     if (event.request.type === "LaunchRequest") {
@@ -36,10 +36,9 @@ function eventHandler(event, context) {
       });
     }
   } catch (e) {
-      context.fail("Exception: " + e);
+    context.fail("Exception: " + e);
   }
 };
-
 
 function onLaunch(launchRequest, session, callback) {
   callback(session.attributes, buildSpeechletResponse("Mornigton Crescent", "Good afternoon and welcome to Mornington Crescent! First player, name your station!", "", false));
