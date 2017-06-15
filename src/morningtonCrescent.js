@@ -27,8 +27,8 @@ var winMessages = [
 function eventHandler(event, context) {
   try {
     if (event.request.type === "LaunchRequest") {
-      onLaunch(event.request, event.session, function callback(sessionAttributes, speechletResponse) {
-        context.succeed(buildResponse(sessionAttributes, speechletResponse));
+      onLaunch(function callback(speechletResponse) {
+        context.succeed(buildResponse(event.session.attributes, speechletResponse));
       });
     } else if (event.request.type === "IntentRequest") {
       onIntent(event.request, event.session, function callback(sessionAttributes, speechletResponse) {
@@ -40,8 +40,8 @@ function eventHandler(event, context) {
   }
 };
 
-function onLaunch(launchRequest, session, callback) {
-  callback(session.attributes, buildSpeechletResponse("Mornigton Crescent", "Good afternoon and welcome to Mornington Crescent! First player, name your station!", "", false));
+function onLaunch(callback) {
+  callback(buildSpeechletResponse("Mornigton Crescent", "Good afternoon and welcome to Mornington Crescent! First player, name your station!", "", false));
 }
 
 function onIntent(intentRequest, session, callback) {

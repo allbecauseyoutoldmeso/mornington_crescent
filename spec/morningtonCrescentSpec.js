@@ -10,3 +10,11 @@ describe('#eventHandler', function() {
     expect(self.onIntent).toHaveBeenCalled();
   });
 });
+
+describe('#onLaunch', function() {
+  it('returns a greeting', function() {
+    var callback = jasmine.createSpy('callback');
+    onLaunch(callback);
+    expect(callback).toHaveBeenCalledWith(buildSpeechletResponse("Mornigton Crescent", "Good afternoon and welcome to Mornington Crescent! First player, name your station!", "", false));
+  });
+});
