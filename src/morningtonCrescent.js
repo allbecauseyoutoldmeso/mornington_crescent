@@ -20,7 +20,7 @@ var playMessages = [
 var winMessages = [
   "Jolly well played chaps!",
   "I haven't seen play of that calibre since 1942",
-  "That was a real doooozy.",
+  "That was a real doozy.",
   "Excellent work gentlemen."
 ];
 
@@ -66,7 +66,7 @@ function handleWinRequest(callback) {
   var winArr = winMessages;
   var winIndex = Math.floor(Math.random() * winArr.length);
   var winMessage = winArr[winIndex];
-  callback(buildSpeechletResponseWithoutCard('You won! ' + winMessage, "", "true"));
+  callback(buildSpeechletResponseWithoutCard('You won! ' + winMessage, "", true));
 }
 
 function buildSpeechletResponse(title, output, repromptText, shouldEndSession) {

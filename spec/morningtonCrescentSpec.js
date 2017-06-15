@@ -41,6 +41,15 @@ describe('#handlePlayRequest', function() {
   })
 })
 
+describe('#handleWinRequest', function() {
+  it('returns a random win message', function() {
+    spyOn(Math, 'random').and.returnValue(0.5);
+    var callback = jasmine.createSpy('callback');
+    handleWinRequest(callback)
+    expect(callback).toHaveBeenCalledWith(buildSpeechletResponseWithoutCard("You won! That was a real doozy.", "", true))
+  })
+})
+
 describe('buildSpeechletResponse', function() {
   it('builds a speech response object with card', function() {
     expect(buildSpeechletResponse('mornington crescent', 'You won!', '', true)).toEqual(
