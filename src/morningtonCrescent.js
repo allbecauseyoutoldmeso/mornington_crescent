@@ -14,7 +14,17 @@ var playMessages = [
     "Canny move.  Flanching rights claimed.",
     "Are you blooming insane?",
     "I've not seen that since Archie Gimmel scored against Holland in 1978!",
-    "Mind the gap!"
+    "Mind the gap!",
+    "A bold, unorthodox move. I must say, I'm impressed.",
+    "Not sure about that one. Why not, instead, do a transverse straddle to Oval, leaving the District Line free for LV increments?",
+    "That really opens things up. Surely it'll soon be possible to supercede after a parallel move.",
+    "Hmm. At this point it would be interesting to extrapolate through parallel shunts to a predicted future event, roughly corresponding to the relative impact of Tooting Bec on Shepherd's Bush, as those shunts converge on a dialectic axis.",
+    "Crabbit's Law in play, which dictates that the illegality of vectored access to low coordinates within the Rhombus of Apperley is non-negotiable under any circumference.",
+    "All Egyptian moves are disallowed except crossovers and double takes.",
+    "Nothing fancy and leaves a few options open when in or recently out of knip.",
+    "That really shows you how the Swedish Inversion works to mix it up a bit.",
+    "Shrewd. Very shrewd indeed",
+    "Nailbiting stuff. I can't wait to see how that's going to be followed up. Something towards the west end of the Bakerloo perhaps? No, a bit crude in current conditions."
 ];
 
 var winMessages = [
