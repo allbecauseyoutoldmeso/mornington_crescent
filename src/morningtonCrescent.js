@@ -34,6 +34,8 @@ var winMessages = [
   "Excellent work gentlemen."
 ];
 
+var currentPlayer = 'Player two'
+
 function eventHandler(event, context) {
   try {
     if (event.request.type === "LaunchRequest") {
@@ -61,8 +63,7 @@ function onIntent(intentRequest, callback) {
     goodbyeMessage(callback)
   } else if (intentRequest.intent.name == 'PlayIntent') {
     handlePlayRequest(intentRequest.intent.slots.station.value, callback);
-  }
-  else {
+  } else {
     throw "Invalid intent";
   }
 }
@@ -79,7 +80,12 @@ function generateRandomComment(callback) {
   var commentArr = playMessages;
   var commentIndex = Math.floor(Math.random() * commentArr.length);
   var randomComment = commentArr[commentIndex];
-  callback(buildSpeechletResponseWithoutCard(randomComment, "", false));
+  callback(buildSpeechletResponseWithoutCard(randomComment + ' ' + currentPlayer + ', name your station.', "", false));
+  switchPlayer();
+}
+
+function switchPlayer() {
+  currentPlayer == 'Player two' ? currentPlayer = 'Player one' : currentPlayer = 'Player two'
 }
 
 function handleWinRequest(callback) {

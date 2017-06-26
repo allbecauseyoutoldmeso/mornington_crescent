@@ -64,7 +64,14 @@ describe('#handlePlayRequest', function() {
     spyOn(Math, 'random').and.returnValue(0.5);
     var callback = jasmine.createSpy('callback');
     handlePlayRequest('pimlico', callback)
-    expect(callback).toHaveBeenCalledWith(buildSpeechletResponseWithoutCard("Mind the gap!", "", false))
+    expect(callback).toHaveBeenCalledWith(buildSpeechletResponseWithoutCard("Mind the gap! Player two, name your station.", "", false))
+  })
+})
+
+describe('#switchPlayer', function() {
+  it('switches between players', function() {
+    switchPlayer();
+    expect(currentPlayer).toEqual('Player one')
   })
 })
 
