@@ -57,6 +57,8 @@ function onLaunch(callback) {
 function onIntent(intentRequest, callback) {
   if (intentRequest.intent.name == "AMAZON.HelpIntent") {
     helpMessage(callback)
+  } else if (intentRequest.intent.name == "AMAZON.StopIntent") {
+    goodbyeMessage(callback)
   } else if (intentRequest.intent.slots.station.value == 'mornington crescent') {
     handleWinRequest(callback);
   } else if (intentRequest.intent.name == 'PlayIntent') {

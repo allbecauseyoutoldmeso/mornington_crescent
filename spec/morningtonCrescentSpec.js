@@ -28,7 +28,7 @@ describe('#helpMessage', function() {
 });
 
 describe('#goodbyeMessage', function() {
-  it('returns helpful information', function() {
+  it('returns goodbye message and ends session', function() {
     var callback = jasmine.createSpy('callback');
     goodbyeMessage(callback);
     expect(callback).toHaveBeenCalledWith(buildSpeechletResponseWithoutCard("Bye for now.  Do tune in again sometime soon.", "", true));
@@ -50,6 +50,11 @@ describe('#onIntent', function() {
     spyOn(self, 'helpMessage');
     onIntent(helpEvent().request, 'callback')
     expect(self.helpMessage).toHaveBeenCalled();
+  });
+  it('recognises a stop request', function() {
+    spyOn(self, 'goodbyeMessage');
+    onIntent(stopEvent().request, 'callback')
+    expect(self.goodbyeMessage).toHaveBeenCalled();
   });
 })
 
