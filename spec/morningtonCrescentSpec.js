@@ -36,7 +36,7 @@ describe('#goodbyeMessage', function() {
 });
 
 describe('#onIntent', function() {
-  it('recognises a non winning station', function() {
+  it('recognises a play request', function() {
     spyOn(self, 'handlePlayRequest');
     onIntent(playEvent().request, 'callback')
     expect(self.handlePlayRequest).toHaveBeenCalled();
@@ -62,7 +62,7 @@ describe('#handlePlayRequest', function() {
   it('returns a random comment', function() {
     spyOn(Math, 'random').and.returnValue(0.5);
     var callback = jasmine.createSpy('callback');
-    handlePlayRequest(callback)
+    handlePlayRequest('pimlico', callback)
     expect(callback).toHaveBeenCalledWith(buildSpeechletResponseWithoutCard("Mind the gap!", "", false))
   })
 })

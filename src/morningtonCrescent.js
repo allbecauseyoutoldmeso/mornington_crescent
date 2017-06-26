@@ -59,22 +59,24 @@ function onIntent(intentRequest, callback) {
     helpMessage(callback)
   } else if (intentRequest.intent.name == "AMAZON.StopIntent") {
     goodbyeMessage(callback)
-  } else if (intentRequest.intent.slots.station.value == 'mornington crescent') {
-    handleWinRequest(callback);
   } else if (intentRequest.intent.name == 'PlayIntent') {
-    handlePlayRequest(callback);
+    handlePlayRequest(intentRequest.intent.slots.station.value, callback);
   }
   else {
     throw "Invalid intent";
   }
 }
 
-function handlePlayRequest(callback) {
-  var commentArr = playMessages;
-  var commentIndex = Math.floor(Math.random() * commentArr.length);
-  var randomComment = commentArr[commentIndex];
-  callback(buildSpeechletResponseWithoutCard(randomComment, "", false));
-}
+function handlePlayRequest(station, callback) {
+  if (station == 'mornington crescent') {
+    handleWinRequest(callback);
+  } else {
+    var commentArr = playMessages;
+    var commentIndex = Math.floor(Math.random() * commentArr.length);
+    var randomComment = commentArr[commentIndex];
+    callback(buildSpeechletResponseWithoutCard(randomComment, "", false));
+   }
+  }
 
 function handleWinRequest(callback) {
   var winArr = winMessages;
