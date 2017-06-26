@@ -27,6 +27,14 @@ describe('#helpMessage', function() {
   });
 });
 
+describe('#goodbyeMessage', function() {
+  it('returns helpful information', function() {
+    var callback = jasmine.createSpy('callback');
+    goodbyeMessage(callback);
+    expect(callback).toHaveBeenCalledWith(buildSpeechletResponseWithoutCard("To play the game select a tactically advantageous underground station.", "Go ahead.  Select a station", false));
+  });
+});
+
 describe('#onIntent', function() {
   it('recognises a non winning station', function() {
     spyOn(self, 'handlePlayRequest');
@@ -38,6 +46,11 @@ describe('#onIntent', function() {
     onIntent(morningtonCrescentEvent().request, 'callback')
     expect(self.handleWinRequest).toHaveBeenCalled();
   })
+  it('recognises a help request', function() {
+    spyOn(self, 'helpMessage');
+    onIntent(helpEvent().request, 'callback')
+    expect(self.helpMessage).toHaveBeenCalled();
+  });
 })
 
 describe('#handlePlayRequest', function() {
