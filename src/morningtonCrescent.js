@@ -77,9 +77,7 @@ function handlePlayRequest(station, callback) {
 }
 
 function generateRandomComment(callback) {
-  var commentArr = playMessages;
-  var commentIndex = Math.floor(Math.random() * commentArr.length);
-  var randomComment = commentArr[commentIndex];
+  var randomComment = playMessages[Math.floor(Math.random() * playMessages.length)];
   callback(buildSpeechResponse(randomComment + ' ' + currentPlayer + ', name your station.', "", false));
   switchPlayer();
 }
@@ -89,9 +87,7 @@ function switchPlayer() {
 }
 
 function handleWinRequest(callback) {
-  var winArr = winMessages;
-  var winIndex = Math.floor(Math.random() * winArr.length);
-  var winMessage = winArr[winIndex];
+  var winMessage = winMessages[Math.floor(Math.random() * winMessages.length)];
   callback(buildSpeechResponse('You won! ' + winMessage, "", true));
 }
 
