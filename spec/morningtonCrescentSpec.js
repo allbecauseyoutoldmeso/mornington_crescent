@@ -19,6 +19,14 @@ describe('#onLaunch', function() {
   });
 });
 
+describe('#helpMessage', function() {
+  it('returns helpful information', function() {
+    var callback = jasmine.createSpy('callback');
+    helpMessage(callback);
+    expect(callback).toHaveBeenCalledWith(buildSpeechletResponseWithoutCard("To play the game select a tactically advantageous underground station.", "Go ahead.  Select a station", false));
+  });
+});
+
 describe('#onIntent', function() {
   it('recognises a non winning station', function() {
     spyOn(self, 'handlePlayRequest');
@@ -37,7 +45,7 @@ describe('#handlePlayRequest', function() {
     spyOn(Math, 'random').and.returnValue(0.5);
     var callback = jasmine.createSpy('callback');
     handlePlayRequest(callback)
-    expect(callback).toHaveBeenCalledWith(buildSpeechletResponseWithoutCard("Whoa? Its not Lent yet, is it?", "", false))
+    expect(callback).toHaveBeenCalledWith(buildSpeechletResponseWithoutCard("Mind the gap!", "", false))
   })
 })
 

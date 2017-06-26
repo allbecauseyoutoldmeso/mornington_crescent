@@ -79,6 +79,10 @@ function handleWinRequest(callback) {
   callback(buildSpeechletResponseWithoutCard('You won! ' + winMessage, "", true));
 }
 
+function helpMessage(callback) {
+  callback(buildSpeechletResponseWithoutCard("To play the game select a tactically advantageous underground station.", "Go ahead.  Select a station", false))
+}
+
 function buildSpeechletResponse(title, output, repromptText, shouldEndSession) {
   return {
     outputSpeech: {
