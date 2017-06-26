@@ -39,11 +39,11 @@ var currentPlayer = 'Player two'
 function eventHandler(event, context) {
   try {
     if (event.request.type === "LaunchRequest") {
-      onLaunch(function callback(speechletResponse) {
+      welcomeMessage(function callback(speechletResponse) {
         context.succeed(buildResponse(event.session.attributes, speechletResponse));
       });
     } else if (event.request.type === "IntentRequest") {
-      onIntent(event.request, function callback(speechletResponse) {
+      handleIntent(event.request, function callback(speechletResponse) {
         context.succeed(buildResponse(event.session.attributes, speechletResponse));
       });
     }
@@ -52,11 +52,11 @@ function eventHandler(event, context) {
   }
 };
 
-function onLaunch(callback) {
-  callback(buildSpeechletResponse("Mornigton Crescent", "Good afternoon and welcome to Mornington Crescent! First player, name your station!", "", false));
+function welcomeMessage(callback) {
+  callback(buildSpeechResponse("Good afternoon and welcome to Mornington Crescent! First player, name your station!", "", false));
 }
 
-function onIntent(intentRequest, callback) {
+function handleIntent(intentRequest, callback) {
   if (intentRequest.intent.name == "AMAZON.HelpIntent") {
     helpMessage(callback)
   } else if (intentRequest.intent.name == "AMAZON.StopIntent") {
@@ -80,7 +80,7 @@ function generateRandomComment(callback) {
   var commentArr = playMessages;
   var commentIndex = Math.floor(Math.random() * commentArr.length);
   var randomComment = commentArr[commentIndex];
-  callback(buildSpeechletResponseWithoutCard(randomComment + ' ' + currentPlayer + ', name your station.', "", false));
+  callback(buildSpeechResponse(randomComment + ' ' + currentPlayer + ', name your station.', "", false));
   switchPlayer();
 }
 
@@ -92,39 +92,18 @@ function handleWinRequest(callback) {
   var winArr = winMessages;
   var winIndex = Math.floor(Math.random() * winArr.length);
   var winMessage = winArr[winIndex];
-  callback(buildSpeechletResponseWithoutCard('You won! ' + winMessage, "", true));
+  callback(buildSpeechResponse('You won! ' + winMessage, "", true));
 }
 
 function helpMessage(callback) {
-  callback(buildSpeechletResponseWithoutCard("To play the game select a tactically advantageous underground station.", "Go ahead.  Select a station", false))
+  callback(buildSpeechResponse("To play the game select a tactically advantageous underground station.", "Go ahead.  Select a station", false))
 }
 
 function goodbyeMessage(callback) {
-  callback(buildSpeechletResponseWithoutCard("Bye for now.  Do tune in again sometime soon.", "", true))
+  callback(buildSpeechResponse("Bye for now.  Do tune in again sometime soon.", "", true))
 }
 
-function buildSpeechletResponse(title, output, repromptText, shouldEndSession) {
-  return {
-    outputSpeech: {
-      type: "PlainText",
-      text: output
-    },
-    card: {
-      type: "Simple",
-      title: title,
-      content: output
-    },
-    reprompt: {
-      outputSpeech: {
-        type: "PlainText",
-        text: repromptText
-      }
-    },
-    shouldEndSession: shouldEndSession
-  };
-}
-
-function buildSpeechletResponseWithoutCard(output, repromptText, shouldEndSession) {
+function buildSpeechResponse(output, repromptText, shouldEndSession) {
   return {
     outputSpeech: {
       type: "PlainText",
