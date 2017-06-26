@@ -85,6 +85,10 @@ function helpMessage(callback) {
   callback(buildSpeechletResponseWithoutCard("To play the game select a tactically advantageous underground station.", "Go ahead.  Select a station", false))
 }
 
+function goodbyeMessage(callback) {
+  callback(buildSpeechletResponseWithoutCard("Bye for now.  Do tune in again sometime soon.", "", true))
+}
+
 function buildSpeechletResponse(title, output, repromptText, shouldEndSession) {
   return {
     outputSpeech: {

@@ -31,7 +31,7 @@ describe('#goodbyeMessage', function() {
   it('returns helpful information', function() {
     var callback = jasmine.createSpy('callback');
     goodbyeMessage(callback);
-    expect(callback).toHaveBeenCalledWith(buildSpeechletResponseWithoutCard("To play the game select a tactically advantageous underground station.", "Go ahead.  Select a station", false));
+    expect(callback).toHaveBeenCalledWith(buildSpeechletResponseWithoutCard("Bye for now.  Do tune in again sometime soon.", "", true));
   });
 });
 
