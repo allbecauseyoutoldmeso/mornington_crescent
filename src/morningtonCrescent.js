@@ -71,12 +71,16 @@ function handlePlayRequest(station, callback) {
   if (station == 'mornington crescent') {
     handleWinRequest(callback);
   } else {
-    var commentArr = playMessages;
-    var commentIndex = Math.floor(Math.random() * commentArr.length);
-    var randomComment = commentArr[commentIndex];
-    callback(buildSpeechletResponseWithoutCard(randomComment, "", false));
-   }
+    generateRandomComment(callback)
   }
+}
+
+function generateRandomComment(callback) {
+  var commentArr = playMessages;
+  var commentIndex = Math.floor(Math.random() * commentArr.length);
+  var randomComment = commentArr[commentIndex];
+  callback(buildSpeechletResponseWithoutCard(randomComment, "", false));
+}
 
 function handleWinRequest(callback) {
   var winArr = winMessages;

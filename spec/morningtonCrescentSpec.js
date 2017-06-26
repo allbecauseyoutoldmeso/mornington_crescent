@@ -41,11 +41,7 @@ describe('#onIntent', function() {
     onIntent(playEvent().request, 'callback')
     expect(self.handlePlayRequest).toHaveBeenCalled();
   });
-  it('recognises mornington crescent', function() {
-    spyOn(self, 'handleWinRequest');
-    onIntent(morningtonCrescentEvent().request, 'callback')
-    expect(self.handleWinRequest).toHaveBeenCalled();
-  })
+
   it('recognises a help request', function() {
     spyOn(self, 'helpMessage');
     onIntent(helpEvent().request, 'callback')
@@ -59,6 +55,11 @@ describe('#onIntent', function() {
 })
 
 describe('#handlePlayRequest', function() {
+  it('recognises mornington crescent', function() {
+    spyOn(self, 'handleWinRequest');
+    handlePlayRequest('mornington crescent', 'callback')
+    expect(self.handleWinRequest).toHaveBeenCalled();
+  })
   it('returns a random comment', function() {
     spyOn(Math, 'random').and.returnValue(0.5);
     var callback = jasmine.createSpy('callback');
