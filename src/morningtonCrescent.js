@@ -53,7 +53,7 @@ function eventHandler(event, context) {
 };
 
 function welcomeMessage(callback) {
-  callback(buildSpeechResponse("Good afternoon and welcome to Mornington Crescent! First player, name your station!", "", false));
+  callback(buildSpeechResponse("Good afternoon and welcome to Mornington Crescent! Player one, name your station!", "", false));
 }
 
 function handleIntent(intentRequest, callback) {
