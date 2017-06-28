@@ -77,7 +77,6 @@ function handlePlayRequest(station, callback) {
 function generateRandomComment(callback) {
   var randomComment = playMessages[Math.floor(Math.random() * playMessages.length)];
   callback(buildSpeechResponse(randomComment + ' Next player, name your station.', "", false));
-  switchPlayer();
 }
 
 function handleWinRequest(callback) {
