@@ -34,8 +34,6 @@ var winMessages = [
   "Excellent work gentlemen."
 ];
 
-var currentPlayer = 'Player two'
-
 function eventHandler(event, context) {
   try {
     if (event.request.type === "LaunchRequest") {
@@ -78,12 +76,8 @@ function handlePlayRequest(station, callback) {
 
 function generateRandomComment(callback) {
   var randomComment = playMessages[Math.floor(Math.random() * playMessages.length)];
-  callback(buildSpeechResponse(randomComment + ' ' + currentPlayer + ', name your station.', "", false));
+  callback(buildSpeechResponse(randomComment + ' Next player, name your station.', "", false));
   switchPlayer();
-}
-
-function switchPlayer() {
-  currentPlayer == 'Player two' ? currentPlayer = 'Player one' : currentPlayer = 'Player two'
 }
 
 function handleWinRequest(callback) {

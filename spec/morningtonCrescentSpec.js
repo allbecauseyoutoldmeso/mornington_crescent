@@ -15,7 +15,7 @@ describe('#welcomeMessage', function() {
   it('returns a greeting', function() {
     var callback = jasmine.createSpy('callback');
     welcomeMessage(callback);
-    expect(callback).toHaveBeenCalledWith(buildSpeechResponse("Good afternoon and welcome to Mornington Crescent! First player, name your station!", "", false));
+    expect(callback).toHaveBeenCalledWith(buildSpeechResponse("Good afternoon and welcome to Mornington Crescent! Player one, name your station!", "", false));
   });
 });
 
@@ -64,14 +64,7 @@ describe('#handlePlayRequest', function() {
     spyOn(Math, 'random').and.returnValue(0.5);
     var callback = jasmine.createSpy('callback');
     handlePlayRequest('pimlico', callback)
-    expect(callback).toHaveBeenCalledWith(buildSpeechResponse("Mind the gap! Player two, name your station.", "", false))
-  })
-})
-
-describe('#switchPlayer', function() {
-  it('switches between players', function() {
-    switchPlayer();
-    expect(currentPlayer).toEqual('Player two')
+    expect(callback).toHaveBeenCalledWith(buildSpeechResponse("Mind the gap! Next player, name your station.", "", false))
   })
 })
 
